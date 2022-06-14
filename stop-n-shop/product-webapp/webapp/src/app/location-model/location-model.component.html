@@ -1,0 +1,19 @@
+<agm-map
+        [latitude]="lat"
+        [longitude]="lon" 
+        [maxZoom]="17"
+        [fitBounds]="true">
+               
+          <agm-marker 
+          [latitude]="lat"
+          [longitude]="lon" 
+          [markerDraggable]="false"
+          [draggable]="false"
+          [agmFitBounds]="true">
+
+          <agm-info-window>
+            <strong>Your shop is here</strong>
+          </agm-info-window>
+         
+         </agm-marker>
+</agm-map>

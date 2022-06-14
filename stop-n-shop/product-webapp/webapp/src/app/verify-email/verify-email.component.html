@@ -1,0 +1,80 @@
+<div class="body">
+  <div class="container p-5">
+    <div class="container d-flex justify-content-center p-5 my-5">
+      <mat-card class="p-5 rounded">
+        <mat-card-title class="d-inline-flex"
+          ><mat-icon class="mx-auto">account_circle</mat-icon>
+
+          <p class="fw-bold fs-6 p-3">Verifiy Email</p></mat-card-title
+        >
+        <mat-card-content>
+          <form class="" #loginForm="ngForm">
+            <br />
+            <mat-form-field class="" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input
+                type="email"
+                matInput
+                [(ngModel)]="formData.toEmail"
+                name="toEmail"
+                placeholder="Ex. pat@example.com"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                #toEmail="ngModel"
+                required
+                [(ngModel)]="formData.toEmail"
+              />
+            </mat-form-field>
+            <div *ngIf="toEmail.touched" class="alert-danger">
+              <p *ngIf="toEmail.errors?.['required']">Email is a required!</p>
+              <p *ngIf="toEmail.errors?.['pattern']">
+                This is not a valid Email!!!
+              </p>
+            </div>
+
+            <div>
+              <button
+                class="btn btn-primary"
+                [disabled]="!loginForm.valid"
+                (click)="passData()"
+              >
+                send OTP
+              </button>
+            </div>
+            <br />
+            <div *ngIf="show">
+              <p class="fw-bold fs-6 p-3">Enter Received OTP</p>
+
+              <br />
+              <mat-form-field class="" appearance="fill">
+                <mat-label>6-digit-number</mat-label>
+                <input
+                  type="otp"
+                  matInput
+                  [(ngModel)]="formData.otp"
+                  name="otp"
+                  placeholder="Ex. 123456"
+                  #otp="ngModel"
+                  required
+                />
+              </mat-form-field>
+              <div *ngIf="otp.touched" class="alert-danger">
+                <p *ngIf="otp.errors?.['required']">otp is a required!</p>
+              </div>
+
+              <div>
+                <button
+                  class="btn btn-primary"
+                  [disabled]="!loginForm.valid"
+                  (click)="redirectPath1()"
+                >
+                  verify
+                </button>
+              </div>
+              <br />
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

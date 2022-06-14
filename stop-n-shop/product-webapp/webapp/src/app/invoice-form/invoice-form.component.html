@@ -1,0 +1,25 @@
+
+    <mat-card style="border: 5px solid black;"><button class="btn btn-danger close"  (click)="onNoClick()">X</button>
+        <div id="pdfTable" >
+            <img style="height: 4rem;border-radius: 2rem;width:4rem;margin-left: 43%;" src="./assets/appLogo.png"><br><br>
+            <div>
+                <h1 mat-dialog-title style="text-align: center;color: red;">Order Details</h1>
+                <h1 style="font-size:large;" ><b>Order Id :</b> {{response.orderId}}</h1>
+                <p><b>Deliver To :</b>{{buyerResponse}}</p>
+            </div>
+            <div class="row"   *ngFor="let p of response.producList"><hr>
+                <div class="col-md-4">
+                    <img style="height:4rem;width:4rem" [src]="p.productImage">
+                </div>
+                <div class="col-md-8">
+                    <p><b>Product Id :</b>{{p.productId}}</p>
+                    <p><b>Product Name :</b> {{p.productName}}</p>
+                    <p><b>Brand :</b>{{p.brand}}</p>
+                    <p><b>Amount Paid :</b>{{p.sellingPrice}}</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary" (click)="captureScreen()" >Download</button>
+        </div>
+    </mat-card>

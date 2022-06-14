@@ -1,0 +1,125 @@
+   {
+    "shopId":9,
+   "shopName":"https://www.google.com/maps/@28.5272803,77.0688997,11z",
+   "address":"abcd,dkmf",
+   "location":"chennai",
+   "rating":"4",
+    } 
+
+ images = [
+    {
+      "url":"/assets/image-01.gif",
+      "shopName": "Settu Bazar",
+      "address":"Cecilia Chapman 711-2880 Nulla St. Mankato Mississippi.",
+      "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 1,
+    },
+    { 
+      "url":"/assets/image-02.gif",
+      "shopName": "Shop ‘Til You Drop ",
+      "address":"Iris Watson P.O. Box 283 8562 Fusce Rd. Frederick Nebraska.",
+     "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 2
+    },
+    {
+      "url":"/assets/image-03.gif",
+      "shopName": "Home of Things",
+      "address":"Celeste Slater 606-3727 Ullamcorper. Street Roseville NH.",
+  "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 3
+    },    
+    {
+      "url":"/assets/image-04.gif",
+      "shopName": "Great Value Goods",
+      "address":"natMelvin Porter  P.O. Box 132 1599 Curabitur Rd.  Bandera South Dakota.",
+  "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 4
+    },    
+    {
+      "url":"/assets/image-05.gif",
+      "shopName": "Luxe Retail",
+      "address":"Theodore Lowe Ap #867-859 Sit Rd. Azusa New York.",
+  "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 5
+    },    
+    {
+      "url":"/assets/image-06.gif",
+      "shopName": "Treasure Box",
+      "address":"Kyla Olsen Ap #651-8679 Sodales Av. Tamuning PA.",
+  "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 1
+    },    
+    {
+      "url":"/assets/image-07.gif",
+      "shopName": "The Prop Shop",
+      "address":"Forrest Ray 191-103 Integer Rd. Corona New Mexico.",
+  "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 5
+    },    
+    {
+      "url":"/assets/image-08.gif",
+      "shopName": "Shopper’s Delight",
+      "address":"Hiroko Potter P.O. Box 887 2508 Dolor. Av. Muskegon KY.",
+  "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 4
+    },    
+    {
+      "url":"/assets/image-09.gif",
+      "shopName": "City Mart",
+      "address":"Nyssa Vazquez 511-5762 At Rd. Chelsea MI 67708. ",
+  "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 4
+    },
+    {
+      
+      "url":"/assets/image-10.gif",
+      "shopName": "Value Store ",
+      "address":"Lawrence Moreno 935-9940 Tortor. Street Santa Rosa MN",
+  "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 4
+    },    
+    {
+      "url":"/assets/image-11.gif",
+      "shopName": "Daily Essentials",
+      "address":"Ina Moran P.O. Box 929 4189 Nunc Road Lebanon KY.",
+  "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 3
+    },    
+    {
+      "url":"/assets/image-12.gif",
+      "shopName": "5The Shopping Club",
+      "address":"Melvin Porter P.O. Box 132 1599 Curabitur Rd. Bandera South Dakota.",
+  "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z"
+      "rating": 3
+    },
+  ]
+
+
+
+
+
+(Shop)
+http://localhost:8080/myapp/v1/shop
+
+ {
+   "shopName":"Mega Mart1",
+   "address":{
+       "doorNo":"natMelvin Porter  P.O. Box 132 1599 Curabitur Rd.  Bandera South Dakota.",
+    "street":"vala street",
+    "district":"Namakkal",
+    "state":"Tamilnadu",
+    "country":"India",
+    "pincode":"345678"
+       
+   },
+   "location":"https://www.google.com/maps/@28.5272803,77.0688997,11z",
+   "rating":"4",
+   "shopImage": ""
+    }
+
+(file)
+add the file
+
+
+
+

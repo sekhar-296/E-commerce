@@ -1,0 +1,218 @@
+version: "2"
+
+services:
+
+
+  api-gatway:
+    image: api-gateway
+    build: ./api-gateway
+    container_name: "api-gateway-service"
+    hostname: localhost
+    network_mode: "host"
+    ports:
+      - 8080:8080
+
+  authentication-service:
+    image: authentication-service
+    build: ./authentication-service
+    container_name: "authentication-service"
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8084:8084
+    depends_on:
+      - mysqlservice
+
+  eureka-server-service:
+    image: eureka-server
+    container_name: "eureka-server"
+    build: ./eureka-server
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8761:8761
+
+  myCartService:
+    image: mycart-service
+    container_name: "mycart-Service"
+    build: ./myCartService
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8083:8083
+    depends_on:
+      - mongodbservice
+
+  email-service:
+    image: email-service
+    container_name: "email-service"
+    build: ./email-service
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 9093:9093
+
+
+
+  oauth2authentication:
+    image: oauth2authentication
+    container_name: "oauth2authentication-service"
+    build: ./oauth2authentication
+    network_mode: host
+    hostname: localhost
+    ports:
+      - 8088:8088
+
+
+  payment-gateway:
+    image: payment-gateway
+    container_name: "payment-gateway-service"
+    build: ./payment-gateway
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 9542:9542
+    depends_on:
+      - mongodbservice
+
+  product-owner-service:
+    image: product-owner-service
+    container_name: "product-owner-service"
+    build: ./product-owner-service
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8081:8081
+    depends_on:
+      - elasticsearch
+
+  chatapp-service:
+    image: chatapp-service
+    container_name: "chatapp-service"
+    build: ./chatapp-service
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 9546:9546
+    depends_on:
+      - mongodbservice
+
+
+  product-recommendation-service:
+    image: product-recommendation-service
+    container_name: "product-Recommendation-service"
+    build: ./productRecommendationService
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+        - 9000:9000
+    depends_on:
+      - neo4j
+
+  shopsListService:
+    image: shopslist-service
+    container_name: "shopsList-Service"
+    network_mode: "host"
+    build: ./shopsListService
+    restart: always
+    hostname: localhost
+    ports:
+      - 8087:8087
+    depends_on:
+      - mongodbservice
+
+
+
+  mongodbservice:
+    image: mongo:latest
+    container_name: "mongodb"
+    hostname: localhost
+    network_mode: "host"
+    ports:
+        - 27017:27017
+
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    network_mode: "host"
+    ports:
+      - 15672:15672
+      - 5672:5672
+
+
+  mysqlservice:
+    image: mysql:latest
+    container_name: "mysql-user"
+    hostname: localhost
+    network_mode: "host"
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=userDB
+      - MYSQL_PASSWORD=root
+
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+    container_name: elasticsearch
+    network_mode: "host"
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=elasticsearch
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+
+  neo4j:
+    image: neo4j:4.2.3
+    container_name: neo4j
+    restart: always
+    network_mode: "host"
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      NEO4J_AUTH: neo4j/password
+
+  prometheus:
+    container_name: prom
+    image: prom/prometheus
+    restart: always
+    network_mode: "bridge"
+    hostname: localhost
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+
+  grafana:
+    container_name: graf
+    image: grafana/grafana
+    restart: always
+    network_mode: "bridge"
+    hostname: localhost
+    ports:
+      - 3000:3000
+
+
+  product-webapp:
+    image: product-webapp
+    container_name: "product-webapp"
+    build: ./product-webapp
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 4200:4200
+

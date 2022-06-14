@@ -1,0 +1,42 @@
+<div id="background" class="container-fluid text-center">
+   
+    <div>
+        <mat-grid-list cols="4">
+
+            <H1 style="text-align: center; margin: 0px;  padding-top: 5px;  background-color: white;  " ><strong>Deals of the Day</strong> </H1>
+
+            <div  class="fixed" >
+                <div class="pagination">
+                    <pagination-controls  (pageChange)="p = $event" class="text-center"></pagination-controls>
+                </div>               
+            </div>
+
+        <mat-card (click)="myFunction(product.productId)" class="card" *ngFor="let product of productData  | paginate:{ itemsPerPage: 8, currentPage: p} " (click)="saveData(product)" routerLink="/navbar/productDetails">
+
+          
+                <div class="productImage" (click)="myFunction(product.productId)" >
+                    <img mat-card-image [src]="product.image"  alt="Image">
+                </div>
+                <i></i>
+               
+               
+                <div class="disrat" style=" display: flex; " (click)="myFunction(product.productId)"> 
+                    <!-- Discount {{ discount( product.mrp, product.sellingPrice )}} % -->
+                                                                                                                                         
+
+                    <p class="discount" > Discount  {{product.discountPercentage}} %</p>
+                    <p style="color: #00a651; padding: 3px; text-align: center;"><b>Deal of the Day</b> </p>
+                </div>
+
+                <mat-card-title (click)="myFunction(product.productId)">                    
+                    <div style="text-align: left;" > <h4>{{product.productname}}</h4></div>                    
+                </mat-card-title>
+
+                <span style="font-weight: 1000; " id="price" (click)="myFunction(product.productId)">   
+                    <h6 id="final-price" style="font-size:20px ; "> &#x20b9; <b>{{product.sellingPrice}}</b> </h6>
+                     <span class="mrp"> M.R.P : <s> &#x20b9; {{product.mrp}}</s></span>
+                </span> 
+            
+        </mat-card>
+     </mat-grid-list>
+    </div>

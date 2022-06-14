@@ -1,0 +1,44 @@
+<div>
+  <div class="menu">
+    <div class="search"><h2 class="heading">Your Orders</h2>
+      <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let metadata of orderList |  paginate:{ itemsPerPage: 5, currentPage: p}" hideToggle>
+          <mat-expansion-panel-header style="height:auto;padding: 1rem;background-color: #F0FFF0;">
+            <mat-panel-title class="row ">
+                <div class="col-md-4 ">
+                 <b> Order Id : </b>{{metadata.orderId}}
+                </div>
+                <div class="col-md-4">
+                 <b>Amount : </b> &#x20b9;&nbsp;{{metadata.amount/100}}
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-warning" mat-raised-button (click)="trackOrder(this.metadata)">Track Order</button>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-success" mat-raised-button (click)="openDialog(this.metadata)">Invoice</button>
+                </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row" *ngFor="let product of metadata.producList"><hr>
+            <div class="col-md-4">
+              <img style="width:7rem;height:7rem" [src]="product.productImage">
+            </div>
+            <div class="col-md-4">
+             <p><b>Product Name: </b>{{product.productName}}</p>
+             <p><b>Brand : </b>{{product.brand}}</p>
+             <p><b>Quantity : </b>{{product.productQuantity}}</p>
+            </div>
+            <div class="col-md-4">
+              <p><b>Deliver To :</b>{{buyerResponse}}</p>
+              <p ><b>Price : </b> &#x20b9;{{product.sellingPrice}} </p>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+  </div>
+</div>
+

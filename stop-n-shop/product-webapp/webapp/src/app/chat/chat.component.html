@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="row rounded-lg overflow-hidden shadow">
+    <!-- Users box-->
+    <div class="col-3 px-0">
+      <div class="bg-white">
+        <div class="bg-gray px-4 py-2 bg-light">
+          <p class="h5 mb-0 py-1">Recent</p>
+        </div>
+        <div class="messages-box">
+          <div class="list-group rounded-0" *ngFor="let user of users">
+            <a
+              (click)="onUserSelect(user)"
+              class="list-group-item list-group-item-action rounded-0"
+              [class.active]="user === selectedUser"
+              style="cursor: pointer"
+            >
+              <div class="media align-items-center">
+                <img
+                  src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg"
+                  alt="user"
+                  width="50"
+                  class="rounded-circle"
+                />
+                <div class="media-body ml-4 d-inline-flex align-items-center">
+                  <h6 class="mb-0 fs-6 px-2">{{ user.username }}</h6>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Chat Box-->
+    <div class="col-9 px-0" *ngIf="selectedUser !== null">
+      <div class="px-4 py-5 chat-box bg-white">
+        <div *ngFor="let msg of messages">
+          <!-- *ngIf="msg.from !== userId && msg.from === selectedUser.userId" -->
+          <div class="media w-100 mb-3" *ngIf="userId != msg.to">
+            <img
+              src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg"
+              alt="user"
+              width="50"
+              class="rounded-circle"
+            />
+            <div class="media-body ml-3">
+              <div class="bg-light rounded py-2 px-3 mb-2">
+                <p class="text-small mb-0 text-muted">{{ msg.message }}</p>
+              </div>
+              <span class="message-data-time">{{
+                msg.timestamp | date: "shortTime"
+              }}</span>
+            </div>
+          </div>
+          <!-- Reciever Message-->
+          <div class="media w-100 float-end mb-3" *ngIf="userId != msg.from">
+            <div class="media-body">
+              <!-- <img
+                src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg"
+                alt="user"
+                width="50"
+                class="rounded-circle"
+              /> -->
+              <div class="bg-primary rounded-2 py-2 px-3 mb-2">
+                <p class="text-small mb-0 text-white">
+                  {{ msg.message }}
+                </p>
+              </div>
+              <span class="message-data-time">{{
+                msg.timestamp | date: "shortTime"
+              }}</span>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let msg of messageHistory">
+          <div class="media w-100 mb-3">
+            <img
+              src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg"
+              alt="user"
+              width="50"
+              class="rounded-circle"
+            />
+            <div class="media-body ml-3" *ngIf="userId != msg.from">
+              <div class="bg-light rounded py-2 px-3 mb-2">
+                <p class="text-small mb-0 text-muted border border-success">
+                  {{ msg.message }}
+                </p>
+              </div>
+              <span class="message-data-time">{{
+                msg.timestamp | date: "shortTime"
+              }}</span>
+            </div>
+          </div>
+          <div class="media w-100 float-end mb-3" *ngIf="userId != msg.to">
+            <div class="media-body">
+              <div class="bg-primary rounded py-2 px-3 mb-2">
+                <p class="text-small mb-0 text-white">{{ msg.message }}</p>
+              </div>
+              <span class="message-data-time">{{
+                msg.timestamp | date: "shortTime"
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Typing area -->
+      <div class="bg-light">
+        <div class="input-group">
+          <input
+            [(ngModel)]="message"
+            type="text"
+            placeholder="Type a message"
+            class="form-control rounded-0 border-0 py-4 bg-light"
+          />
+          <div class="input-group-append m-auto">
+            <button mat-mini-fab (click)="sendMessage()" class="bg-dark" [disabled]="message.length==0">
+              <mat-icon matSuffix>send</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

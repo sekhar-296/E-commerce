@@ -1,0 +1,46 @@
+<div class="heading"><h1>Order Summary</h1>
+     
+
+
+<div style="display:flex">
+<mat-card>
+<mat-card class="card" *ngFor="let items of summary " >
+    <mat-card-content  >
+    <!-- <mat-grid-list cols="3" rowHeight="2:1" > -->
+        <div style="width: 200px;margin-left: 10px;">
+            <img [src]="items.productImage" style="height: 100px;width: 150px;margin-top: 12%;">
+        </div>
+        
+        <div style="width: 200px;margin-left: 10px;">
+            <h3 style="margin-right:20%; font-size:x-large;">{{items.productName}}</h3>   
+            <h3 >price:{{items.productPrice}} </h3>
+            <h3> Quantity :
+                <select id="drop">
+                    <option value = "1"> {{items.productQuantity}}</option>
+                    <option value = "1"> 1</option>
+                    <option value = "2"> 2</option>
+                    <option value = "3"> 3</option>
+                    <option value = "4"> 4</option>
+                    <option value = "5"> 5</option>
+                </select>                      
+            </h3>
+            <h3><button class="remove">Remove</button></h3>
+        </div>
+        
+        <div style="width: 200px;margin-left: 200px;">
+            <h3  >Delivery By <br>{{items.deliverydate}} | {{items.deliverycharge}}</h3>
+        </div>
+    </mat-card-content>   
+</mat-card>
+</mat-card>
+<mat-card class="card1" >
+    <mat-card-title>Price Details</mat-card-title><br>
+    <h2>Price(4 items) : 624</h2>
+    <h2>Delivery Charges : 120</h2> 
+    <h2>Total Payable : 744</h2>  <br>
+    <button class="paybutton"  type="button">Make Payment</button><br><br>
+    <button class="download"  type="button">Download Invoice</button>
+        <!-- <button class="btn btn-primary" type="button">Button</button> -->
+    </mat-card>
+</div>
+

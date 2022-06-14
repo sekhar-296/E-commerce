@@ -1,0 +1,39 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "MainProduct":
+    [
+      {
+       "photo":"../assets/red.png",
+        "product":"Dabur Red TootPaste",
+        "price":"70$",
+        "discount":"20%",
+        "shopName":"Sri Kirana",
+        "brand":"Dabur",
+        "decription":"Dabur Red is Indias No. 1 Ayurvedic Fluoride Free Paste which is a complete Ayurvedic Oral Care for your family",
+        "inStock":"Yes",
+        "freeDelivary":"Yes",
+
+        "photo1":"../assets/pepsodent.png",
+        "brandName":"Pepsodent",
+        "category":"TootPaste",
+        "price1":"56$",
+        "off":"2"
+      }
+    ]
+}

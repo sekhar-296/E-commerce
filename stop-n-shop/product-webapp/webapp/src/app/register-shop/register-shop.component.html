@@ -1,0 +1,178 @@
+
+<div class='bg'>
+   
+
+   
+
+       
+<mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom" class="container">
+   
+    <mat-step [stepControl]="formDetailsGroup" label="Details">
+        <div >
+            <img  src="https://i.ibb.co/mBg1WBp/kindpng-6728540.png"  class="cropped1" style="float:right;">
+            
+         <div class="container" >
+          
+             <form [formGroup]="formDetailsGroup" >
+               
+                 <div class="row" calss="inc">
+                     <div class="column">
+                         <label for="shopName" >Shop name</label>
+                         <input type="text" id="name" formControlName="shopName" placeholder="Your shop name here">
+                         <div *ngIf="shopName.invalid && shopName.touched" class="errors" style="color:red ;">
+                            <div *ngIf="shopName.errors?.['required']">
+                                *Shop name is required
+                            </div>
+                         </div>
+               
+                    
+                     </div>
+                     <div class="column">
+                         <label for="owner">Owner name</label>
+                         <input type="text" id="owner" formControlName="ownerName" placeholder="Your name here" [(ngModel)]="ownerNamee">
+                         <div *ngIf="ownerName.invalid && ownerName.touched" class="errors" style="color:red ;">
+                            <div *ngIf="shopName.errors?.['required']">
+                                *Owner name is required
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="row">
+                    <div class="column">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" formControlName="email" placeholder="Your email here" [(ngModel)]="emailId">
+                    </div>
+                     <div class="column">
+                         <label for="contact">Contact Number</label>
+                         <input type="tel" id="contact"  formControlName="contactNo" placeholder="Your phone number here" [(ngModel)]="number">
+                         <div *ngIf="contactNo.invalid && contactNo.touched" class="errors" style="color:red ;">
+                            <div *ngIf="contactNo.errors?.['required']">
+                                *Contact number is required
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="column">
+                         <label for="issue">Describe your Shop</label>
+                         <textarea id="issue" formControlName="description" placeholder="Describe your Shop in detail here"></textarea>
+                     </div>
+                     <div class="column">
+                        <!-- <button class="button" id="profile-button"  type="button"  mat-raised-button  (click)="fileInput.click()"   style="margin-top:3vh;width:150px;height:50px;text-align: center;line-height: 0.3rem;">Upload<mat-icon>upload</mat-icon></button> -->
+                        <button mat-raised-button id="profile-button"  type="button" (click)="fileInput.click()" style="margin-top:4vh;width:150px;height:50px;text-align: center;line-height: 0.3rem;background-color: greenyellow;">Upload<mat-icon>upload</mat-icon></button>
+                        <input formControlName="file" hidden (change)="getFileData($event)"  #fileInput type="file">
+                        <span class="file-name">{{selectedFile?.name}}</span>
+                    </div>
+                 </div>
+                 <button class="button" matStepperNext ><span>Next</span></button>
+                
+             </form>
+         </div>
+     </div>
+    </mat-step>
+
+    <mat-step [stepControl]="formAddressGroup" label="Address" >
+        <div >
+            <img  src="https://i.ibb.co/mBg1WBp/kindpng-6728540.png"  class="cropped1" style="float:right;">
+           
+         <div class="container" >
+             <form [formGroup]="formAddressGroup">
+                 <div class="row">
+                     <div class="column">
+                         <label for="Address1">Address line 1</label>
+                         <input type="text" id="address1" formControlName="address1" placeholder="Your address line 1 here">
+                         <div *ngIf="address1.invalid && address1.touched" class="errors" style="color:red ;">
+                            <div *ngIf="address1.errors?.['required']">
+                                *Address is required
+                            </div>
+                         </div>
+                     </div>
+                     <div class="column">
+                         <label for="Address2">Address line 2</label>
+                         <input type="text" id="address2" formControlName="address2" placeholder="Your Address line 2 here">
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="column">
+                         <label for="City">City</label>
+                         <input type="text" id="city" formControlName="city" placeholder="Your city here">
+                         <div *ngIf="city.invalid && city.touched" class="errors" style="color:red ;">
+                            <div *ngIf="city.errors?.['required']">
+                                *City is required
+                            </div>
+                         </div>
+                     </div>
+                     <div class="column">
+                         <label for="state">State</label>
+                         <input type="text" id="state" formControlName="state" placeholder="Your state here">
+                         <div *ngIf="state.invalid && state.touched" class="errors" style="color:red ;">
+                            <div *ngIf="state.errors?.['required']">
+                                *City is required
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="column">
+                         <label for="issue">Pincode</label>
+                         <input type="number" id="pincode" formControlName="pincode" placeholder="Your pincode here">
+                         <div *ngIf="pincode.invalid && pincode.touched" class="errors" style="color:red ;">
+                            <div *ngIf="pincode.errors?.['required']">
+                                *City is required
+                            </div>
+                         </div>
+                     </div>
+                     <div class="column">
+                        <label for="landmark">Landmark(optional)</label>
+                        <input type="text" id="landmark" formControlName="landmark" placeholder="Your landmark here">
+                    </div>
+                 </div>
+                 <button class="button" matStepperNext (click)="getShopLocation()"><span>Next</span></button>
+             </form>
+         </div>
+     </div>
+      </mat-step>
+    
+      <mat-step [stepControl]="formLocationGroup" label="Location">
+        <div >
+            <img  src="https://i.ibb.co/mBg1WBp/kindpng-6728540.png"  class="cropped1" style="float:right;">
+            
+         <div class="container" >
+          
+             <form>
+
+    <agm-map  [zoom]="12"
+              [latitude]="latitude" 
+              [longitude]="longitude"
+              [fitBounds]="true"
+              (mapClick)="onMapClicked($event)" >
+
+        <agm-marker 
+        [latitude]="latitude"
+        [longitude]="longitude" 
+        [agmFitBounds]="true"
+        [markerDraggable]="true"
+        [draggable]="true"
+        (dragEnd)="onMapClicked($event)" >
+
+        <agm-info-window>
+          <strong>here?</strong>
+        </agm-info-window>
+        </agm-marker> 
+    </agm-map>
+               
+                
+                 <button class="button" matStepperNext (click)="shopDetailsToBeSent()" routerLink="/navbar/productlist"><span>Register</span></button>
+                 lat={{latitude}} | lon={{longitude}}
+             </form>
+         </div>
+     </div>
+      
+
+      </mat-step>
+
+    </mat-horizontal-stepper>
+
+            
+        
+</div>

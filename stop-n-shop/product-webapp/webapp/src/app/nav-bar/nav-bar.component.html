@@ -1,0 +1,137 @@
+<div *ngIf="!show">
+<mat-sidenav-container class="sidenav-container">
+    
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true">
+        <div class="profile">
+            <!-- <button class="btn btn-outline-primary" style="">Back</button> -->
+            <ngx-avatar
+              borderCorner="20"
+              [size]="80"
+              bgColor=" 	rgb(107,142,35)"
+              fgColor="white"
+              size="50"
+              [round]="true"
+              name="{{name}}"
+            >
+            </ngx-avatar>
+        </div>
+        <div style="margin-top: 10%;" routerLink="/navbar/profile">
+            <b><a style="text-decoration:none;color: black;margin-left: 50px;">EDIT PROFILE</a></b>
+        </div>
+        <hr>
+        <mat-nav-list class="link">
+            <!-- <a matTooltip="Back" mat-list-item (click)="back()"><mat-icon style="font-size:3rem;margin-bottom:1.5rem;">arrow_circle_left</mat-icon>&nbsp;&nbsp; &nbsp; &nbsp; Back</a>
+            <hr> -->
+            <a mat-list-item routerLink="/navbar/dealsoftheday">DEALS OF THE DAY</a>
+            <hr>
+            <a mat-list-item routerLink="/navbar/shopslist">VISIT STORES</a>
+            <hr>
+            <a mat-list-item routerLink="/navbar/orderhistory">MY ORDERS</a>
+            <hr>
+            <a mat-list-item routerLink="/navbar/mycart">MY CART</a>
+            <hr>
+            <a mat-list-item routerLink="/navbar/productlist">All Products</a><hr>
+            <a mat-list-item href="#">OFFERS AND REWARDS</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary" class="tool">
+            <!-- <h1><mat-icon></mat-icon></h1> -->
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+                <mat-icon aria-label="Side nav toggle icon" style="font-size: 35px;">menu</mat-icon>
+            </button>
+            <div style="display: flex;align-items: center;">
+                <img style="height: 4rem;border-radius: 2rem;width:4rem;" src="./assets/appLogo.png">
+                <h1 style="display: flex;align-items: center;font-family: 'Kaushan Script', cursive;color: rgb(252, 249, 249);
+                    padding-left: 2rem;font-weight:1000;font-size:36px;">STOP-N-SHOP</h1>
+            </div>
+            <div style="display: flex;justify-content: space-between;padding-left:30%;padding-top:1%;" routerLink="/navbar/mycart">
+                <div>
+                    <h3 matTooltip="My Cart"><mat-icon style="font-size: 40px;">shopping_cart</mat-icon></h3>
+                </div>
+               
+            </div>
+
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-right: 1rem;
+          "
+          (click)="logout()"
+        >
+          <div>
+            <h3 matTooltip="Logout">
+              <mat-icon style="font-size: 40px">logout</mat-icon>
+            </h3>
+          </div>
+        </div>
+      </mat-toolbar>
+      <!-- Add Content Here -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<!-- =====================================BUYER END========================================================================= -->
+<div *ngIf="show">
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+            [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true">
+            
+            <div class="profile">
+                <ngx-avatar
+                  borderCorner="20"
+                  [size]="80"
+                  bgColor="rgb(107,142,35)"
+                  fgColor="white"
+                  size="50"
+                  [round]="true"
+                  name="{{name}}"
+                >
+                </ngx-avatar>
+            </div>
+          
+            <div style="margin-top: 10%;" routerLink="/navbar/profile">
+                <b><a style="text-decoration:none;color: black;margin-left: 50px;">EDIT PROFILE</a></b>
+            </div>
+            <hr>
+            <mat-nav-list class="link">
+                <a mat-list-item routerLink="/navbar/productlist">My Products</a>
+                <hr>
+                <a mat-list-item routerLink="/navbar/addproduct">Add Products</a><hr>
+                <a mat-list-item  (click)="login()">Chat</a>
+                <hr>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <mat-toolbar color="primary" class="tool">
+                <!-- <h1><mat-icon></mat-icon></h1> -->
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon aria-label="Side nav toggle icon" style="font-size: 35px;">menu</mat-icon>
+                </button>
+                <div style="display: flex;align-items: center;" (click)="logout()">
+                    <img style="height: 4rem;border-radius: 2rem;width:4rem;padding: auto;" src="./assets/appLogo.png">
+                    <h1 style="display: flex;align-items: center;font-family: 'Kaushan Script', cursive;color: rgb(252, 249, 249);
+                        padding-left: 2rem;font-weight:1000;font-size:36px;">STOP-N-SHOP</h1>
+                </div>
+                <div style="display: flex;justify-content: space-between;margin-left:30%;" routerLink="/navbar/addproduct">
+                    <div>
+                        <mat-icon style="font-size: 40px;">add</mat-icon>
+                    </div>
+                    <div style="padding-top:3%;">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add Products</p>
+                    </div>
+                </div>
+    
+                <div style="display: flex;justify-content: space-between;">
+                    <div (click)="logout()">
+                        <h3  matTooltip="Logout"  ><mat-icon style="font-size: 40px;">logout</mat-icon></h3>
+                    </div>
+                </div>
+            </mat-toolbar>
+            <!-- Add Content Here -->
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

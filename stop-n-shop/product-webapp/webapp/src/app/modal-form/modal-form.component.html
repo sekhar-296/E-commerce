@@ -1,0 +1,63 @@
+<div class="body">
+    <div style="text-align: center;">
+        <h2>EDIT_PROFILE</h2>
+    </div>
+    <h2>PERSONAL-INFO</h2>
+    <div [formGroup]="myform" style="text-align: left;">
+        <label for="modelNo">Name: </label>
+        <input class="form-control" type="text" formControlName="userName" required=""><br>
+
+        <label for="image">DOB :</label>
+        <input type="date" class="form-control" formControlName="dob" required><br>
+      
+    </div>
+
+    <h2>ADDRESS:</h2>
+    <div [formGroup]="myform1" style="text-align: left;">
+        <div style="display: flex;">
+            <div>
+                <label for="modelName">Street Name: </label>
+                <input style="padding-right: 50px;" class="form-control" formControlName="streetName" required>
+                <div *ngIf="myform1.invalid && (myform1.dirty || myform1.touched)" class=" alert-danger">
+                 Street is required.
+                </div>
+            </div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div> <label for="modelName">City :&nbsp;&nbsp;&nbsp; </label>
+                <input class="form-control" formControlName="city" required>
+                <div *ngIf="myform1.invalid && (myform1.dirty || myform1.touched)" class=" alert-danger">
+                     city is required.
+                    </div>
+            </div>
+        </div>
+        <label for="modelName">Land Mark :</label>
+        <input class="form-control" formControlName="landMark" required>
+        <div *ngIf="myform1.invalid && (myform1.dirty || myform1.touched)" class=" alert-danger">
+            LandMark is required.
+           </div>
+        <label for="modelName">Pin :</label>
+        <input class="form-control" formControlName="pin"  required>
+        <div *ngIf="myform1.invalid && (myform1.dirty || myform1.touched)" class=" alert-danger">
+            Pin is required.
+           </div>
+        <label for="modelName">State:</label>
+        <input class="form-control" formControlName="state" required >
+        <div *ngIf="myform1.invalid && (myform1.dirty || myform1.touched)" class=" alert-danger">
+            state is required.
+           </div>
+        <label for="modelName">Nationality :</label>
+        <input class="form-control" formControlName="nationality" required>
+        <div *ngIf="myform1.invalid && (myform1.dirty || myform1.touched)" class=" alert-danger">
+            Nationality is required.
+           </div>
+    </div>
+    <div style="padding: 20px;align-items: center;text-align: center;">
+        <button style="    margin: 7px;
+            border-radius: 5px;
+        
+           font-weight: bold;
+            color: rgb(10, 10, 10);
+            padding: 5px 12px;
+            background-color: rgb(50,205,50);
+            font-size:  17px;" (click)="updateFunction()" routerLink="/navbar/productlist">save</button>
+    </div>

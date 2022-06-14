@@ -1,0 +1,28 @@
+
+
+<mat-card>
+  <h1 style="margin-left: 2%;margin-top: 1%;"><b> Recommendation On </b> <u style="text-decoration: none;color: red;">{{categoryOption}}</u></h1>
+  <mat-chip-list>
+      <mat-chip *ngFor="let option of options"    
+      (click)="getData(option)" 
+      [selected]="chips.has(option)" style="margin-top: 0.5%;margin-left: 0.5%;" class="toggle"  >{{ option }}</mat-chip>
+     
+      <!-- <mat-chip  (click)="getCity()"style="margin-top: 0.5%;" >City</mat-chip> -->
+      <!-- <mat-chip  (click)="getCityAndCategory()" style="margin-top: 0.5%;">City And Category</mat-chip> -->
+      <pagination-controls  (pageChange)="p = $event" pagination-controls class="pagination" ></pagination-controls>
+  </mat-chip-list>
+</mat-card>
+<mat-card style="margin: 4rem 0rem;">
+  <div class="row">
+    <div class="card" style="width: 13rem;background-color:aliceblue;border: 3px solid rgb(135,206,250);" *ngFor="let metadata of recommand |  paginate:{ itemsPerPage: 5, currentPage: p} "  (click)="showData(metadata)"><i></i>
+        <img class="card-img-top" style="height:10rem;" src="{{metadata.productImage}}" alt="Card image cap">
+        <div class="card-body" style="background-color: aliceblue;">
+          <h5 class="card-title"><b>Brand Name :</b>{{metadata.brand}}</h5>
+          <p class="card-text"><u>Category</u>:{{metadata.productCategory}} <br>Price:<b>{{metadata.mrp}}</b></p>
+          <mat-icon>starrate</mat-icon><mat-icon>starrate</mat-icon>
+          <mat-icon>starrate</mat-icon><mat-icon>star_outline</mat-icon><mat-icon>star_outline</mat-icon>
+          <label class="offer" style="color: red;">{{metadata.discount}}%off<mat-icon>discount</mat-icon></label>
+        </div>
+      </div>
+</div>
+</mat-card>

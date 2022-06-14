@@ -1,0 +1,79 @@
+
+ <body>
+    <div class="body">
+   
+        <mat-card class="example-card">
+            <div class="content" >
+                <div>
+                <img src="https://www.wordtemplatesonline.net/wp-content/uploads/2015/08/Grocery-List.jpg.webp"
+                class="responsive">
+                </div>
+                <form class="example-form" #loginForm="ngForm" style="padding:0 30px;">
+                    <mat-icon>account_circle</mat-icon>
+                    <b><p>WELCOME</p></b>
+                    <h1 >REGISTER</h1><br>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Name</mat-label>
+                        <input type="text" matInput [(ngModel)]="formData.userName" name="userName"
+                            #userName="ngModel" required [(ngModel)]="formData.userName"/>
+                    </mat-form-field>
+                    <div *ngIf="userName.touched" class="alert-danger">
+                        <p *ngIf="userName.errors?.['required']">Name is a required!</p>
+                 
+                    </div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Mobile No</mat-label>
+                        <input  matInput [(ngModel)]="formData.mobileNo" name="mobileNo"
+                            placeholder="Ex.9897369483"  pattern="^[6-9]\d{9}$" 
+                            #mobileNo="ngModel" required [(ngModel)]="formData.mobileNo" />
+                    </mat-form-field>
+                    <div *ngIf="mobileNo.touched" class="alert-danger">
+                        <p *ngIf="mobileNo.errors?.['required']">Mobile No is a required!</p>
+                        <p *ngIf="mobileNo.errors?.['pattern']">This is not a valid Number!!!</p>
+                    </div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Password</mat-label>
+                        <input type="password" matInput [(ngModel)]="formData.password" name="password"
+                        pattern="^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$" 
+                            placeholder="password" #password="ngModel" required [(ngModel)]="formData.password" />
+                    </mat-form-field>
+                    <div *ngIf="password.touched" class="alert-danger">
+                        <p *ngIf="password.errors?.['required']">password is a required!</p>
+                        <p *ngIf="password.errors?.['pattern']">1.At least 8 chars.<br>
+                          2.Contains at least one digit.<br>
+                       3.one lower alpha char and one upper alpha char.<br>
+                        4.one char within a set of special chars (@#%$^ etc.)
+                      </div>
+                    <hr>
+                    <div class="radio" style="display: flex;"><div>
+                        <input type="radio" id="SELLER" name="SELLER" value="SELLER" 
+                        name="SELLER"  #SELLER="ngModel" [(ngModel)]="formData.role" #role="ngModel"  required checked >
+                         <label for="SELLER" >REGISTER AS SELLER&nbsp;&nbsp;&nbsp;</label></div>
+                       <div> <input type="radio" id="BUYER" name="BUYER" value="BUYER" 
+                        name="BUYER"  #BUYER="ngModel" [(ngModel)]="formData.role" #role="ngModel" required checked >
+                         <label for="buyer" > REGISTER AS BUYER</label><br></div>
+                    </div>
+                    <div *ngIf="role.invalid && (role.dirty ||role.touched)" class=" alert-danger">
+                        please select your role
+                    </div>
+                    <div>
+                        <button
+                            style=" border-radius: 5px;
+                            font-weight: bold;
+                             color: rgb(10, 10, 10);
+                             padding: 5px 12px;
+                             background-color: rgb(50,205,50);
+                             font-size:  17px;" [disabled]="!loginForm.valid"
+                            (click)="passData()">REGISTER</button>
+                    </div><br>
+                       
+                        <p>Already a customer ? Login
+                            <a routerLink="/login">here</a></p>
+                            <br>
+                        
+                </form>
+    
+            </div>
+        </mat-card>
+    </div>
+    </body>

@@ -1,0 +1,55 @@
+.heading{
+    margin-top: 30px;
+}
+.card2{
+    width:800px;
+    height: 5%;
+   }
+mat-card-content {
+    display:flex; 
+    justify-content:flex-start;
+    flex-wrap: wrap; 
+    
+ }
+   
+.card{
+    display: flex;
+    width: 900px;
+    height: 190px;
+    /* background-color: aqua; */
+    }
+.pagination{
+    margin-left: 80%;
+   }
+   
+.card1{
+    margin-top: 50px;   
+    width: 500px;
+    font-size: large;
+       /* height: 100px; */
+   
+   }
+.btn{
+       width: 80%;
+     
+   }
+   
+.mat-icon {
+       font-size: 40px;
+     }
+   
+mat-paginator {
+       position: absolute;
+       bottom: 0;
+       text-align: center;
+       margin: 0 auto;
+     }
+.paybutton{
+    margin-left: 20%;
+    background-color: green;
+}
+.download{
+    margin-left: 20%;
+    background-color: grey;
+}
+   

@@ -1,0 +1,183 @@
+
+<mat-card>
+  <div class="row">
+    <mat-card class="col-md-5">
+      <img
+        style="height: 25rem; margin-top: 3rem"
+        mat-card-image
+        [src]="product.productImage"
+      />
+      <mat-card-content
+        style="
+          color: white;
+          background-color: red;
+          border-radius: 19rem;
+          padding: 1.2rem;
+          width: 6rem;
+          text-align: center;
+          margin-top: -30rem;
+          position: absolute;
+        "
+      >
+        <b>Discount </b><b>{{ discountPercentage }} % OFF</b>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="col-md-7">
+      <img
+        class="img-responsive"
+        style="
+          height: 10rem;
+          width: 10rem;
+          position: relative;
+          margin-left: 50%;
+          margin-bottom: -20%;
+        "
+        [src]="product.qrcode"
+        alt="image"
+      />
+      <!-- <h2 style="text-decoration: none;">{{product.productName}}</h2> -->
+      <div class="dropdown" style="float: right">
+        <button class="dropbtn" style="color: blue; font-size: 2rem">
+          <span class="material-icons">share</span>
+        </button>
+        <div class="dropdown-content">
+          <form [formGroup]="shareForm">
+            <mat-card style="margin-left: -8rem">
+              <mat-label>Enter Email</mat-label>
+              <mat-form-field class="cardcontent" appearance="fill">
+                <input
+                  matInput
+                  placeholder="Enter Email"
+                  formControlName="shareEmail"
+                  type="text"
+                />
+              </mat-form-field>
+              <button
+                class="btn btn-outline-primary"
+                (click)="email(this.product)"
+              >
+                Share
+              </button>
+            </mat-card>
+          </form>
+        </div>
+      </div>
+      <h2 style="text-decoration: none">{{ product.productName }}</h2>
+      <mat-icon class="icon">starrate</mat-icon
+      ><mat-icon class="icon">starrate</mat-icon>
+      <mat-icon class="icon">starrate</mat-icon
+      ><mat-icon class="icon">starrate</mat-icon
+      ><mat-icon class="icon">star_half</mat-icon><br /><br />
+      <p>
+        <b>Price:</b
+        ><b style="color: blue; margin-left: 1rem"
+          >{{ product.sellingPrice }} Rs</b
+        >
+      </p>
+      <!-- <p style="color: white; background-color: red;width: 15%;;" class=""><b>Discount :</b><b style="margin-left: 1rem;">{{discountPercentage}}   % </b></p> -->
+      <!-- <p><b>Shop Name:</b>&nbsp; {{product.shopName}}</p> -->
+
+      <p><b>Brand Name :</b>&nbsp;&nbsp;{{ product.brand }}</p>
+
+      <p><b>Description:</b>&nbsp;&nbsp;{{ product.description }}</p>
+      <p *ngIf="flag == false">
+        <b>IN Stock:&nbsp;&nbsp;{{ product.productQuantity }}</b>
+      </p>
+      <p *ngIf="flag == true" style="color: red">
+        <b>Hurry Up...! Only {{ product.productQuantity }} left</b>
+      </p>
+      <label
+        *ngIf="
+          product.productCategory == 'Vegetables' ||
+            product.productCategory == 'Fruit';
+          else qty
+        "
+        ><b>Qty In Kg :</b>
+      </label>
+      <ng-template #qty><b>Qty :</b> </ng-template>
+      <select id="drop" #itemQuantity (change)="onShowLog(itemQuantity.value)">
+        <option value="1">1</option>
+        <option value="2" [disabled]="product.productQuantity < 2">2</option>
+        <option value="3" [disabled]="product.productQuantity < 3">3</option>
+        <option value="4" [disabled]="product.productQuantity < 4">4</option>
+        <option value="5" [disabled]="product.productQuantity < 5">5</option>
+      </select>
+      <br /><br />
+      <p><b>Free Delivery:</b>{{ product.sellerCity }}</p>
+      <div class="input-group-append m-auto">
+        <button (click)="login()" class="p-0" mat-button [disableRipple]="true">
+          chat with seller<mat-icon class="px-2" matSuffix>chat</mat-icon>
+        </button>
+      </div>
+      <div style="margin-top: 2%">
+        <button
+          class="btn btn-warning d-flex align-items-center justify-content-center"
+          style="width: 50%; margin-left: 25%"
+          type="button"
+          (click)="addToCart()"
+        >
+          Add to Cart <mat-icon class="mx-3">shopping_cart</mat-icon>
+        </button>
+
+        <pre></pre>
+        <!-- <button class="btn btn-primary" type="button" >Buy Now <mat-icon>work</mat-icon></button><pre></pre> -->
+      </div>
+    </mat-card>
+  </div>
+  <div class="row">
+    <div
+      class="container-fluid d-flex justify-content-between"
+      style="padding-top: 1%"
+    >
+      <h2><b>You may also like:</b>Recommended Products</h2>
+      <div>
+        <button
+          class="btn btn-outline-success right d-flex align-items-center justify-content-end"
+          routerLink="/navbar/recommendation"
+          type="button"
+          routerLink="/navbar/recommendation"
+        >
+          View More<mat-icon> arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+<mat-card>
+  <div class="container-fluid">
+    <div class="items">
+      <mat-card
+        class="matcard justify-content-between"
+        *ngFor="
+          let metadata of recommand
+            | paginate: { itemsPerPage: 4, currentPage: p }
+        "
+        (click)="recommendDetail(this.metadata)"
+      >
+        <img
+          style="height: 10rem"
+          class="image"
+          mat-card-image
+          [src]="metadata.productImage"
+        />
+        <mat-card-content class="content">
+          <h3>
+            <b>Brand Name:</b><u>{{ metadata.brand }}</u>
+          </h3>
+          <p>
+            <i><u>Category</u>:{{ metadata.productCategory }}</i> <br /><i
+              >Price:</i
+            ><b>{{ metadata.mrp }}</b>
+          </p>
+          <mat-icon>starrate</mat-icon><mat-icon>starrate</mat-icon>
+          <mat-icon>starrate</mat-icon><mat-icon>star_outline</mat-icon
+          ><mat-icon>star_outline</mat-icon>
+          <label class="offer"
+            >{{ metadata.discount }} %<mat-icon>discount</mat-icon></label
+          >
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</mat-card>

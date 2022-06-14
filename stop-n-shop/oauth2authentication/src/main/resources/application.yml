@@ -1,0 +1,12 @@
+server:
+  port: 8088
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 630536975914-8booml63o97jn7r86gqelk0af37fs61b.apps.googleusercontent.com
+            clientSecret: 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
+            redirectUri: http://localhost:4200/
+

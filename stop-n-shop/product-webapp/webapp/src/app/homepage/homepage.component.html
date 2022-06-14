@@ -1,0 +1,627 @@
+<!-- <div class="mainmenu">
+  <div
+    class="menu"
+    style="display: flex; justify-content: space-between; margin-left: 3%"
+  >
+    <div style="display: flex; align-items: center">
+      <img
+        style="height: 4rem; border-radius: 2rem; width: 4rem; padding: auto"
+        src="./assets/appLogo.png"
+      />
+      <h1
+        style="
+          display: flex;
+          align-items: center;
+          font-family: 'Kaushan Script', cursive;
+          color: rgb(252, 249, 249);
+          padding-left: 2rem;
+          margin-top: 1rem;
+          font-weight: 1000;
+          font-size: 36px;
+        "
+      >
+        STOP-N-SHOP
+      </h1>
+    </div>
+    <div class="button">
+      <button mat-raised-button color="primary" type="button">
+       </a>
+      </button>
+
+      <button mat-raised-button type="button">
+        <a style="padding: 0px 5px 3px 5px" routerLink="/login">Login</a>
+      </button>
+    </div>
+  </div>
+</div> -->
+<mat-toolbar class="bg-success" fxLayout="row">
+  <img
+    class="p-2"
+    style="height: 4rem; border-radius: 2rem; width: 4rem"
+    src="./assets/appLogo.png"
+  />
+  <span fxFlex
+    ><h1
+      class="fs-2 px-3 text-light"
+      style="font-family: 'Kaushan Script', cursive"
+    >
+      STOP-N-SHOP
+    </h1></span
+  >
+  <button
+    mat-button
+    *ngFor="let item of menuItems"
+    [fxShow]="item.showOnDesktop"
+    [fxShow.xs]="item.showOnMobile"
+    [fxShow.sm]="item.showOnTablet"
+    routerLink="{{ item.link }}"
+  >
+    <mat-icon>{{ item.icon }}</mat-icon>
+    {{ item.label }}
+  </button>
+  <ng-container>
+    <button
+      [hidden]="getScreenWidth > 500"
+      mat-icon-button
+      [matMenuTriggerFor]="dropMenu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #dropMenu="matMenu">
+      <ng-container *ngFor="let item of menuItems">
+        <div
+          [fxShow]="!item.showOnDesktop"
+          [fxShow.sm]="!item.showOnTablet"
+          [fxShow.xs]="!item.showOnMobile"
+        >
+          <button mat-menu-item>
+            <mat-icon routerLink="{{ item.link }}">{{ item.icon }}</mat-icon>
+            {{ item.label }}
+          </button>
+          <mat-divider></mat-divider>
+        </div>
+      </ng-container>
+    </mat-menu>
+  </ng-container>
+</mat-toolbar>
+
+<div>
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide>
+      <img style="height: 450px" src="../../assets/home06.jpg" alt="" />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img style="height: 450px" src="../../assets/home02.jpg" alt="" />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img style="height: 450px" src="../../assets/home03.jpg" alt="" />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img style="height: 450px" src="../../assets/home01.jpg" alt="" />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img style="height: 450px" src="../../assets/home05.jpg" alt="" />
+    </ng-template>
+  </owl-carousel-o>
+</div>
+
+<div class="container">
+  <div class="row" [ngClass]="{ 'px-5': '{{getScreenWidth<500}}' }">
+    <div class="f-card col-lg-3 col-md-6 col-sm-6 gx-2 gy-2">
+      <img class="f-img" src="../../assets/time.png" alt="" />
+      <h3 class="f-title">
+        <strong>Order Anytime get delivered in 24hrs </strong>
+      </h3>
+      <p>
+        Order from our range of 3000+ products anytime before 11 pm, and we will
+        deliver by 7 am the next day
+      </p>
+    </div>
+
+    <div class="f-card p-sm-4 col-lg-3 col-md-6 gx-2 gy-2">
+      <img class="f-img" src="../../assets/order.png" alt="" />
+      <h3 class="f-title">
+        <strong>No Minimum Order</strong>
+      </h3>
+      <p>
+        Whether you need a pack of curd, or an apple, we will deliver to your
+        doorstep.
+      </p>
+    </div>
+
+    <div class="f-card col-sm-4 col-lg-3 col-md-6 gx-2 gy-2">
+      <img class="f-img" src="../../assets/fresh.png" alt="" />
+      <h3 class="f-title">
+        <strong> Buy Fresh, Eat Fresh</strong>
+      </h3>
+      <p>
+        Buying fresh isn't always eating fresh.Order only what you need & we
+        will deliver it fresh daily!
+      </p>
+    </div>
+
+    <div class="f-card p-sm-4 col-lg-3 col-md-6 gx-2 gy-2">
+      <img class="f-img" src="../../assets/scooter.png" alt="" />
+      <h3 class="f-title">
+        <strong> Live Life on Auto-Pilot!</strong>
+      </h3>
+      <p>
+        Need apples today but curd day after? Just subscribe & schedule your
+        deliveries, we'll deliver it to you by 7 am.
+      </p>
+    </div>
+  </div>
+  <div class="container my-3">
+    <div>
+      <h3 class="content-title"><strong> Top Offers</strong></h3>
+      <div>
+        <div class="row">
+          <div
+            class="d-flex justify-content-center col-sm-4 col-lg-3 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/deals-of-the-week.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-4 col-lg-3 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/combos-topoffers.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-4 col-lg-3 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/the -30cron.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-4 col-lg-3 col-md-6 gx-2 gy-2"
+          >
+            <a href="#"
+              ><mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/big-packs-topoffers.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-3">
+    <div>
+      <h3 class="content-title"><b>Fruits and Vegetables</b></h3>
+
+      <div class="row">
+        <mat-card
+          [hidden]="getScreenWidth < 500"
+          class="col-lg-6 col-md-6 col-sm-12 gx-2 gy-2"
+          data-tilt
+        >
+          <a href="#">
+            <img class="img-fluid" src="../../assets/watermelon.webp" alt="" />
+          </a>
+        </mat-card>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 gx-2 gy-2">
+          <div class="row">
+            <mat-card
+              class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center"
+            >
+              <a href="#">
+                <img class="img-fluid" src="../../assets/mongo.webp" alt="" />
+              </a>
+            </mat-card>
+            <mat-card
+              class="col-lg-6 col-md-6 col-sm-12 gx-2 gy-2 d-flex justify-content-center"
+            >
+              <a href="#">
+                <img class="img-fluid" src="../../assets/cuccumber.webp" alt=""
+              /></a>
+            </mat-card>
+            <mat-card
+              class="col-lg-6 col-md-6 col-sm-12 gx-2 gy-2 d-flex justify-content-center"
+            >
+              <a href="#">
+                <img
+                  class="img-fluid"
+                  src="../../assets/bellpepper.webp"
+                  alt=""
+                />
+              </a>
+            </mat-card>
+            <mat-card
+              class="col-lg-6 col-md-6 col-sm-12 gx-2 gy-2 d-flex justify-content-center"
+            >
+              <a href="#">
+                <img class="img-fluid" src="../../assets/coconut.webp" alt=""
+              /></a>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container my-3">
+    <div>
+      <h3 class="content-title"><b>Snacks Store</b></h3>
+      <div>
+        <div class="row">
+          <div
+            class="d-flex justify-content-center col-sm-4 col-lg-3 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/namkeens-snacks.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-4 col-lg-3 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/namkeens-snacks.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-4 col-lg-3 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/soups.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-4 col-lg-3 col-md-6 gx-2 gy-2"
+          >
+            <a href="#"
+              ><mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/biscuits.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-3">
+    <div>
+      <h3 class="content-title"><b>Beverages</b></h3>
+
+      <div class="row">
+        <mat-card
+          [hidden]="getScreenWidth < 500"
+          class="col-lg-6 col-md-6 col-sm-12 gx-2 gy-2"
+          data-tilt
+        >
+          <a href="#">
+            <img class="img-fluid" src="../../assets/soft-deinks.webp" alt="" />
+          </a>
+        </mat-card>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 gx-2 gy-2">
+          <div class="row">
+            <mat-card
+              class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center"
+            >
+              <a href="#">
+                <img
+                  class="img-fluid"
+                  src="../../assets/energy-drinks.webp"
+                  alt=""
+                />
+              </a>
+            </mat-card>
+            <mat-card
+              class="col-lg-6 col-md-6 col-sm-12 gx-2 gy-2 d-flex justify-content-center"
+            >
+              <a href="#">
+                <img class="img-fluid" src="../../assets/juices.webp" alt=""
+              /></a>
+            </mat-card>
+            <mat-card
+              class="col-lg-6 col-md-6 col-sm-12 gx-2 gy-2 d-flex justify-content-center"
+            >
+              <a href="#">
+                <img
+                  class="img-fluid"
+                  src="../../assets/bellpepper.webp"
+                  alt=""
+                />
+              </a>
+            </mat-card>
+            <mat-card
+              class="col-lg-6 col-md-6 col-sm-12 gx-2 gy-2 d-flex justify-content-center"
+            >
+              <a href="#">
+                <img
+                  class="img-fluid"
+                  src="../../assets/syrups-beverages.webp"
+                  alt=""
+              /></a>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container my-3">
+    <div>
+      <h3 class="content-title"><b> Home and Kitchen</b></h3>
+      <div>
+        <div class="row">
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/h1.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/h2.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/h3.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#"
+              ><mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/h4.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#"
+              ><mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/h5.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#"
+              ><mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/h6.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container my-3">
+    <div>
+      <h3 class="content-title"><b> Brand Store</b></h3>
+      <div>
+        <div class="row">
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/amul-brand.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/coco-cola-brand.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#">
+              <mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/loreal-brand.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#"
+              ><mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/india-gate-brand.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#"
+              ><mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/goodday.png"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+          <div
+            class="d-flex justify-content-center col-sm-6 col-lg-2 col-md-6 gx-2 gy-2"
+          >
+            <a href="#"
+              ><mat-card
+                ><img
+                  class="card-img"
+                  src="../../assets/dettol-brand.webp"
+                  alt="" /></mat-card
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Remove the container if you want to extend the Footer to full width. -->
+
+<!-- Footer -->
+<footer class="text-center text-lg-start text-dark">
+  <div
+    class="container text-center text-md-start mt-5"
+    [hidden]="getScreenWidth < 500"
+  >
+    <!-- Grid row -->
+    <div class="row mt-3">
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+        <!-- Content -->
+        <h6 class="text-uppercase fw-bold">STOP-N-SHOP</h6>
+        <hr
+          class="mb-4 mt-0 d-inline-block mx-auto"
+          style="width: 60px; background-color: #7c4dff; height: 2px"
+        />
+        <p>
+          Here you can use rows and columns to organize your footer content.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+        <!-- Links -->
+        <h6 class="text-uppercase fw-bold">Products</h6>
+        <hr
+          class="mb-4 mt-0 d-inline-block mx-auto"
+          style="width: 60px; background-color: #7c4dff; height: 2px"
+        />
+        <p>
+          <a href="#!" class="text-dark">MDBootstrap</a>
+        </p>
+        <p>
+          <a href="#!" class="text-dark">MDWordPress</a>
+        </p>
+        <p>
+          <a href="#!" class="text-dark">BrandFlow</a>
+        </p>
+        <p>
+          <a href="#!" class="text-dark">Bootstrap Angular</a>
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        <!-- Links -->
+        <h6 class="text-uppercase fw-bold">Useful links</h6>
+        <hr
+          class="mb-4 mt-0 d-inline-block mx-auto"
+          style="width: 60px; background-color: #7c4dff; height: 2px"
+        />
+        <p>
+          <a href="#!" class="text-dark">Your Account</a>
+        </p>
+        <p>
+          <a href="#!" class="text-dark">Become an Affiliate</a>
+        </p>
+        <p>
+          <a href="#!" class="text-dark">Shipping Rates</a>
+        </p>
+        <p>
+          <a href="#!" class="text-dark">Help</a>
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+        <!-- Links -->
+        <h6 class="text-uppercase fw-bold">Contact</h6>
+        <hr
+          class="mb-4 mt-0 d-inline-block mx-auto"
+          style="width: 60px; background-color: #7c4dff; height: 2px"
+        />
+        <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+        <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
+        <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+        <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+      </div>
+      <!-- Grid column -->
+    </div>
+    <!-- Grid row -->
+  </div>
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2022 Copyright:
+    <a class="text-dark text-decoration-none" href="https://www.stopnshop.io/"
+      >stopnshop.io</a
+    >
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+<!-- End of .container -->

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+.sidenav-container {
+    height: 100%;
+  }
+  
+  .sidenav {
+    background-color: white;
+    width: 200px;
+  }
+  
+
+  .icon{
+     
+      font-size: 60px;
+      margin-left: -6rem;
+  }
+  
+  .mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    height:5rem;
+    z-index: 1;
+    /* background-color: rgb(85, 205, 93); */
+    background: linear-gradient(3deg, #67ee0d 0%, #111212 80%);
+  }
+  .profile{
+  
+    font-size: 75px;
+    margin-left:  50px;
+    margin-bottom: none;
+   
+  }
+  .link{
+   margin-left: 30px;
+    font-weight: bold;
+    
+  }
+  .tool{
+  display: flex;
+  justify-content: space-between;
+  
+  }
+  .icon{
+    display: flex;
+    justify-content: space-between;
+  }
+  

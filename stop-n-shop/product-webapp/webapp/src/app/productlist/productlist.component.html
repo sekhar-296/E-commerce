@@ -1,0 +1,60 @@
+<div id="background" class="container-fluid text-center">
+  <div class="fixed">
+    <h1 style="margin-left: 1rem">All Products</h1>
+    <pagination-controls
+      (pageChange)="p = $event"
+      class="text-center"
+    ></pagination-controls>
+  </div>
+
+  <div>
+    <mat-grid-list cols="4">
+      <mat-card
+        class="card"
+        *ngFor="
+          let product of productList
+            | paginate: { itemsPerPage: 8, currentPage: p }
+        "
+        (click)="saveData(product)"
+        ><i></i>
+        <div class="productImage" (click)="myFunction(product.productId)">
+          <img mat-card-image [src]="product.image" alt="Image" />
+        </div>
+
+        <mat-card-title>
+          <div (click)="myFunction(product.productId)">
+            <h4>{{ product.productName }}</h4>
+          </div>
+        </mat-card-title>
+
+        <span id="price" (click)="myFunction(product.productId)">
+          <h6 id="final-price">&#x20b9; {{ product.sellingPrice }}</h6>
+          <span class="mrp">
+            M.R.P : <s> &#x20b9; {{ product.mrp }}</s></span
+          > </span
+        ><br /><br />
+
+        <div class="disrat">
+          <!-- <p> discount{{discountPercentage}}</p> -->
+          <p class="discount">Discount {{ product.discountPercentage }} %</p>
+          <ngb-rating
+            [max]="5"
+            [rate]="3"
+            style="color: black; transform: scale(1.4); padding-left: 10px"
+          ></ngb-rating>
+        </div>
+        <!-- <mat-card-actions >
+                        <button (click)="addToCart()" mat-button  >Add to cart</button> 
+                    </mat-card-actions>                               -->
+      </mat-card>
+    </mat-grid-list>
+  </div>
+
+  <div class="dod" routerLink="/navbar/dealsoftheday">
+    <mat-icon>discount</mat-icon>
+    <h2 style="font-family: 'Times New Roman', Times, serif">
+      Deals Of the Day
+    </h2>
+    <mat-icon>discount</mat-icon>
+  </div>
+</div>

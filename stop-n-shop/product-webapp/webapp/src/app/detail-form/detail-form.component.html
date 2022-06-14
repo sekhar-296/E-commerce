@@ -1,0 +1,167 @@
+<body>
+    <div class="body">
+      <div style="display: flex; justify-content: right">
+        <div
+          style="
+            text-align: center;
+            justify-content: center;
+            color: whitesmoke;
+            padding: 20px 20px;
+            margin-right: 700px;
+          "
+        >
+          <h2>Profile-Details</h2>
+        </div>
+        <div style="color: whitesmoke; padding: 20px 30px">
+          <mat-icon>messages</mat-icon>
+        </div>
+        <div style="color: whitesmoke; padding: 20px 30px">
+          <mat-icon>notifications</mat-icon>
+        </div>
+      </div>
+      <div class="example" style="display: flex">
+        <mat-card class="card1" style="text-align: center;">
+          <div class="avatar">
+            <ngx-avatar
+              borderCorner="20"
+              [size]="150"
+              borderColor="#013ADF"
+              bgColor="#58D3F7"
+              fgColor="#000000"
+              size="50"
+              [round]="true"
+              name="{{ res.userName }}"
+            >
+            </ngx-avatar>
+  
+            <div style="display: flex; color: whitesmoke; ">
+              <mat-icon (click)="openDialogue()" style="padding: 5px 30px"
+                >edit</mat-icon>
+              <h2>EDIT</h2>
+            </div>
+          </div>
+        
+            <h2>hello!!!&nbsp;&nbsp;&nbsp;&nbsp;{{ res.userName }}</h2>
+            <hr />
+         
+            <div style="display: flex;">
+              <mat-icon style="padding: 5px 30px">email</mat-icon>
+              <h3 style="padding: 0 15px">{{ res.email}}</h3>
+            </div>
+            <!-- <hr /> -->
+            <div style="display: flex;">
+              <mat-icon style="padding: 5px 30px">phone</mat-icon>
+              <h2 style="padding: 0 15px">{{ res.mobileNo }}</h2>
+            </div>
+            <hr />
+            <h2 style="margin-right: 60px;">Also try :</h2>
+            <!-- <hr /> -->
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">people</mat-icon>
+              <p style="padding: 10px 15px">Be a member</p>
+            </div>
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">card_giftcard</mat-icon>
+              <p style="padding: 10px 15px">Upgrade to premium</p>
+            </div>
+          </mat-card>
+     
+        <div style="display: flex">
+          <mat-card class="card1">
+            <div style="text-align: center; display: flex; margin-left: 0px">
+              <mat-icon style="padding: 5px 30px">account_circle</mat-icon>
+              <h2 style="padding: 0 15px">PERSONAL INFORMATION</h2>
+            </div>
+            <br />
+            <hr />
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">perm_identity </mat-icon>
+              <h2 style="padding: 0 15px">{{ res.userName }}</h2>
+            </div>
+            <hr />
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">phone</mat-icon>
+              <h2 style="padding: 0 15px">{{ res.mobileNo }}</h2>
+            </div>
+            <hr />
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">date_range</mat-icon>
+              <h2 style="padding: 0 15px">{{ res.dob }}</h2>
+            </div>
+            <hr />
+          </mat-card>
+          <mat-card class="card1">
+            <div style="text-align: center; display: flex; ">
+              <mat-icon style="padding: 5px 30px">navigation</mat-icon>
+              <h2 style="padding: 0 15px">ADDRESS</h2>
+            </div>
+            <hr />
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">address</mat-icon>
+              <h2 *ngIf="res.address" style="padding: 0 15px">
+                Street Name&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;
+                {{ res.address.streetName }}
+              </h2>
+              <h2 *ngIf="!res.address" style="padding: 0 15px">
+                Street Name&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;
+              </h2>
+            </div>
+            <hr />
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">address</mat-icon>
+              <h2 *ngIf="res.address" style="padding: 0 15px">
+                City&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp; {{ res.address.city }}
+              </h2>
+              <h2 *ngIf="!res.address" style="padding: 0 15px">
+                City&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;
+              </h2>
+            </div>
+            <hr />
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">address</mat-icon>
+              <h2 *ngIf="res.address" style="padding: 0 15px">
+                Land Mark&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;
+                {{ res.address.landMark }}
+              </h2>
+              <h2 *ngIf="!res.address" style="padding: 0 15px">
+                Land Mark&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;
+              </h2>
+            </div>
+            <hr />
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">address</mat-icon>
+              <h2 *ngIf="res.address" style="padding: 0 15px">
+                State&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;
+                {{ res.address.state }}
+              </h2>
+              <h2 *ngIf="!res.address" style="padding: 0 15px">
+                State&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;
+              </h2>
+            </div>
+            <hr />
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">address</mat-icon>
+              <h2 *ngIf="res.address" style="padding: 0 15px">
+                Pin&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp; {{ res.address.pin }}
+              </h2>
+              <h2 *ngIf="!res.address" style="padding: 0 15px">
+                Pin&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;
+              </h2>
+            </div>
+            <hr />
+            <div style="display: flex">
+              <mat-icon style="padding: 5px 30px">address</mat-icon>
+              <h2 *ngIf="res.address" style="padding: 0 15px">
+                Nationality&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;
+                {{ res.address.nationality }}
+              </h2>
+              <h2 *ngIf="!res.address" style="padding: 0 15px">
+                Nationality&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;
+              </h2>
+            </div>
+            <!-- <hr /> -->
+          </mat-card>
+        </div>
+      </div>
+    </div>
+</body>

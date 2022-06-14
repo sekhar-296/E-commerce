@@ -1,0 +1,17 @@
+server:
+  port: 9000
+spring:
+  data:
+    neo4j:
+      uri: bolt://localhost
+      username: neo4j
+      password: password@123
+
+  application:
+    name: Recommendation-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  eregister-with-eureka: true
+  fetch-registry: true

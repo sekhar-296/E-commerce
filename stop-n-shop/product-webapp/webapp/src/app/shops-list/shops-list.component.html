@@ -1,0 +1,67 @@
+
+
+<div  style="display:flex;height: 120%;" class="clearfix" >
+  <!-- <img src="assets/bg.jpg" width="100%"> -->
+
+<div style="  width:25% ;border-right: gainsboro 20px solid;" class="clearfix">
+           <div class="container" style="margin: auto;margin-top: 70px;width:fit-content;display: flexbox;">
+
+               <div><h2 >FILTER YOUR SEARCH<mat-icon style="font-weight:bolder ;">filter_list</mat-icon></h2></div>
+
+               <div style="display:inline-flex;margin-bottom: 20px;">
+               <input type="text" [(ngModel)]="searchText" placeholder="Enter keyword">
+               <button mat-raised-button color="primary" style="height: 50px;"><mat-icon >search</mat-icon></button>
+               </div>
+              
+           </div>
+           <div style="width:100%;" >
+               <img src="assets/1.jpg" width="100%">
+
+            </div>
+</div>
+
+
+ <div style="display:flexbox; width:75% ;" >
+      <div>
+       <div class="fixed" >
+       <pagination-controls  (pageChange)="p = $event"></pagination-controls>
+       </div>
+      </div>
+
+       <div >
+           <mat-card  *ngFor="let image of imageList | filter:searchText | paginate:{ itemsPerPage: 4, currentPage: p} " class="clearfix" style="background-color:lightcyan ;">
+              
+               <a routerLink="image-view/{{image.rating}}" >
+                   <mat-card style="width:100px ;float: left;">
+                   <img mat-card-image [src]="image.image" style="height: 100px;">
+                    </mat-card>
+               </a>
+                 
+                     <mat-card-content >
+                          <div style="width: 100px;margin-left: 30px;"> 
+                           <div><h3 style="font-weight: bold;">Shop Name</h3></div>
+                           <h3  style="font-size:large;">{{image.shopName}}</h3>
+                           </div> 
+
+
+                          <div style="width: 100px;margin-left: 30px;">
+                           <div><h3 style="font-weight: bold;">Rating</h3></div>
+                           <ngb-rating  [max]="5" [rate]="image.rating" [readonly]="true" style="color: orange;font-size:xx-large"></ngb-rating>
+                           </div>
+                          
+                           <div style="width: 300px;margin-left: 30px;"> 
+                           <div><h3 style="font-weight: bold;">Address</h3></div>
+                           <h3  style="font-size:large;">{{image.address.addressLine1}},{{image.address.addressLine2}},{{image.address.city}},{{image.address.state}},{{image.address.pincode}}</h3>
+                           <div (click)="open(image.location)" style="cursor:grab ;"><a><img src="assets/loc.png" style="height: 30px;width:30px"></a></div>
+                           </div>
+
+                          <button mat-raised-button color="primary" style="height: 50px; margin-top: 30px;margin-left: 30px;"(click)=routing(image.email)>Shop Now</button>     
+                  </mat-card-content>
+           </mat-card>
+
+           
+   </div> 
+           
+ </div> 
+
+</div>

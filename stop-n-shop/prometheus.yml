@@ -1,0 +1,79 @@
+# my global config
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["172.31.40.182:9090"]
+  - job_name: "WMI Exporter"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["172.31.40.182:9182"]
+  - job_name: 'authentication-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.31.40.182:8084']
+  - job_name: 'chatapp-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.31.40.182:9546']
+  - job_name: 'email-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.31.40.182:9093']
+  - job_name: 'my-cart-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.31.40.182:8083']
+  - job_name: 'oauth-authentication-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.31.40.182:8088']
+  - job_name: 'payment-gateway-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.31.40.182:9542']
+  - job_name: 'product-owner-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.31.40.182:8081']
+  - job_name: 'product-recommendation-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.31.40.182:9000']
+  - job_name: 'shop-list-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.31.40.182:8087']
+
+
+
+ 
+
+
+  

@@ -1,0 +1,56 @@
+<div class="container" style="display:flex ;">
+    <div>
+      <br>
+      <input type="text" [(ngModel)]="address" placeholder="Address" style="width: 300px;height: 50px;margin-left: 100px;"><br><br>
+      <button mat-raised-button color="primary" style="width: 130px;height: 30px;margin-left: 100px;" (click)="findCoordinates()">Get directions</button>
+      <button mat-raised-button color="primary" style="width: 130px;height: 30px;margin-left: 100px;" (click)="reset()">Reset</button><br><br>
+    </div>
+    <div>
+      <div>
+        <br>
+        <input type="text" [(ngModel)]="latitude" style="width: 150px;height: 50px;margin-left: 100px;">
+        <input type="text" [(ngModel)]="longitude" style="width: 150px;height: 50px;margin-left: 100px;"><br><br>
+        <button mat-raised-button color="primary" style="width: 130px;height: 30px;margin-left: 100px;" (click)="reverseGeocoding()">Get Address</button>
+        <button mat-raised-button color="primary" style="width: 130px;height: 30px;margin-left: 50px;" (click)="reverseGeocodeCoordinatesinserting()">Add and Get Direction</button>
+        <button mat-raised-button color="primary" style="width: 130px;height: 30px;margin-left: 50px;" (click)="componentDidMount()">Show my location</button><br><br>
+      </div>
+    </div>
+   
+  </div>
+  
+     <div>
+      <agm-map  [zoom]="12"
+                [latitude]="latitude" 
+                [longitude]="longitude"
+                [fitBounds]="true"
+                (mapClick)="onMapClicked($event)" >
+          
+          
+          <agm-marker *ngFor="let coordinate of markers; let i=index"
+          [latitude]="coordinate[1]"
+          [longitude]="coordinate[0]" 
+          [agmFitBounds]="true" 
+          label='{{i+1}}'>
+          </agm-marker> 
+  
+          <agm-marker 
+          [latitude]="latitude"
+          [longitude]="longitude" 
+          [markerDraggable]="true"
+          [draggable]="true"
+          (dragEnd)="onMapClicked($event)">
+  
+          <agm-info-window>
+            <strong>here?</strong>
+          </agm-info-window>
+          </agm-marker> 
+          
+          
+          <agm-polyline [visible]="true" [strokeWeight]="2" >
+                <agm-polyline-point *ngFor="let coordinate of latlng; let i=index"
+                [latitude]="coordinate[1]"
+                [longitude]="coordinate[0]">
+               </agm-polyline-point>
+          </agm-polyline>
+      </agm-map>
+  </div> 

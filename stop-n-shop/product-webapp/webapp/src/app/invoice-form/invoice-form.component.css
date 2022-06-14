@@ -1,0 +1,12 @@
+.cdk-overlay-pane.my-dialog {
+  position: relative!important;
+}
+.close {
+  position:static;
+  margin-left: 95%;
+  width:2rem;
+  height:2rem;
+}
+.mat-button{
+background-color: aqua;
+}

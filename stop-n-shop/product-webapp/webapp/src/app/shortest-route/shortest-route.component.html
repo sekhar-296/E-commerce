@@ -1,0 +1,31 @@
+      <agm-map  [zoom]="12"
+                [latitude]="latitude" 
+                [longitude]="longitude"
+                [fitBounds]="true">
+          
+          
+          <agm-marker *ngFor="let coordinate of markers; let i=index"
+          [latitude]="coordinate[1]"
+          [longitude]="coordinate[0]" 
+          [agmFitBounds]="true" >
+          </agm-marker> 
+  
+          <agm-marker 
+          [latitude]="latitude"
+          [longitude]="longitude" 
+          [markerDraggable]="true"
+          [draggable]="true">
+  
+          <agm-info-window>
+            <strong>here?</strong>
+          </agm-info-window>
+          </agm-marker> 
+          
+          
+          <agm-polyline [visible]="true" [strokeWeight]="2" >
+                <agm-polyline-point *ngFor="let coordinate of latlng; let i=index"
+                [latitude]="coordinate[1]"
+                [longitude]="coordinate[0]">
+               </agm-polyline-point>
+          </agm-polyline>
+      </agm-map>

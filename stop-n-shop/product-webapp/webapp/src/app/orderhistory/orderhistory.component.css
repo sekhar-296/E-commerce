@@ -1,0 +1,17 @@
+
+ .search{
+    display: flex;
+}
+.pagination{
+    margin-top: 40px;
+    margin-left: 65%;
+}
+
+.heading{
+    margin-left: 3%;
+    margin-top: 2%;
+    font-size: xx-large;
+}
+
+
+

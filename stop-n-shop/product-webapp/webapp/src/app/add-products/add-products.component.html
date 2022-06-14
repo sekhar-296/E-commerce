@@ -1,0 +1,135 @@
+<mat-card class="heading" style="height: 4rem;">
+    <mat-card-header><h1 >Add Products</h1></mat-card-header>
+</mat-card>
+<div *ngIf="flag==false">
+    <mat-tab-group [selectedIndex]="active" mat-align-tabs="center">
+        <mat-tab label="Product Details">
+            <mat-card style="background-color: aliceblue;">
+                <mat-card class="img">
+                    <form [formGroup]="productInfoForm" class="stepper">
+                        <mat-card class="subcard">
+                            <mat-card-content>
+                                <mat-label>Product Name</mat-label>
+                                <mat-form-field class="cardcontent" appearance="fill">
+                                    <input matInput placeholder="Product Name" formControlName="productName" type="text">
+                                </mat-form-field>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <mat-label>Quantity</mat-label>
+                                        <mat-form-field class="cardcontent" appearance="fill">
+                                            <input matInput placeholder="Product Quantity" formControlName="productQuantity" type="number" min="1">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-label>MRP</mat-label>
+                                        <mat-form-field class="cardcontent " appearance="fill">
+                                            <input matInput placeholder="MRP" formControlName="mrp" type="number" min="0">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-label>Selling Price</mat-label>
+                                        <mat-form-field class="cardcontent" appearance="fill">
+                                            <input matInput placeholder="Selling Price" formControlName="sellingPrice" type="number" min="0">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <mat-label>Product Description</mat-label>
+                                <mat-form-field class="cardcontent" appearance="fill">
+                                    <textarea matInput placeholder="Description" formControlName="description" type="text"></textarea>
+                                </mat-form-field>
+                                <br><br>
+                                <button class="btn btn-success" type="button"  (click)="Next()" [disabled]="productInfoForm.invalid">Save & Continue</button>                                
+                                </mat-card-content>
+                            </mat-card>
+                        </form>
+                </mat-card>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="More Information" [disabled]="productInfoForm.invalid">
+            <!-- [disabled]="productInfoForm.invalid" -->
+            <mat-card style="background-color: aliceblue;" >
+                <mat-card class="img">
+                    <form [formGroup]="categoryBrand" class="stepper">
+                        <mat-card class="subcard">
+                         <button class="btn btn-warning" type="button"  (click)="Previous()"><< Previous</button><br><br>
+                            <mat-card-content>
+                                <mat-label>Product Category</mat-label>
+                                 <mat-form-field class="cardcontent" appearance="fill">
+                                     <mat-label>Select Category</mat-label>
+                                 <mat-select formControlName="productCategory">
+                                     <mat-option value="Fruit">Fruit</mat-option>
+                                     <mat-option value="Vegetables">Vegetables</mat-option>
+                                     <mat-option value="Beverages">Beverages</mat-option>
+                                     <mat-option value="Bread/Bakery">Bread/Bakery</mat-option>
+                                     <mat-option value="Dairy">Dairy</mat-option>
+                                     <mat-option value="Baking Goods">Baking Goods</mat-option>
+                                     <mat-option value="Meat">Meat</mat-option>
+                                     <mat-option value="Personal Care ">Personal Care </mat-option>
+                                     <mat-option value="Health Care">Health Care</mat-option>
+                                     <mat-option value="Household & Cleaning Supplies">Household & Cleaning Supplies</mat-option>
+                                     <mat-option value="Baby Items">Baby Items</mat-option>
+                                     <mat-option value="Snacks">Snacks</mat-option>
+                                     <mat-option value="Frozen Foods">Frozen Foods</mat-option>
+                                     <mat-option value="Pharmacy">Pharmacy</mat-option>
+                                     <mat-option value="Others">Others</mat-option>
+                                 </mat-select>
+                                 </mat-form-field>
+                                 <mat-label>Brand</mat-label>
+                                 <mat-form-field class="cardcontent" appearance="fill">
+                                     <input matInput placeholder="Enter Brand" formControlName="brand" type="text">
+                                 </mat-form-field>
+                                 <mat-label>Upload Image</mat-label>
+                                 <input class="cardcontent" type="file" formControlName="file"  placeholder="Upload Image" (change)="myFile($event)"><br><br>
+                                 <button class="btn btn-success" type="button" (click)="myProductInfoFunction()" [disabled]="productInfoForm.invalid  || categoryBrand.invalid">Save & Continue</button>
+                            </mat-card-content>
+                        </mat-card> 
+                     </form>
+                </mat-card>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="Added Products" [disabled]="productInfoForm.invalid || categoryBrand.invalid">
+            <mat-card class="productslist">
+                <div class="row">
+                    <div class="col-12"><br>
+                        <table class="table table-image" style="background-color: aliceblue;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">MRP</th>
+                                    <th scope="col">Sellign Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Brand</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of allProducts let i=index">
+                                        <td style="width: 15%;"><img style="height: 50px;" [src]="product.file" class="img-fluid img-thumbnail"></td>
+                                        <td>{{product.productName}}</td>
+                                        <td>{{product.mrp}}</td>
+                                        <td>{{product.sellingPrice}}</td>
+                                        <td>{{product.productQuantity}}</td>
+                                        <td>{{product.productCategory}}</td>
+                                        <td>{{product.brand}}</td>
+                                        <td (click)="deleteFunction(this.i)"><mat-icon>delete</mat-icon></td><br><br>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button style="text-align: center;margin-left: 10%;width: 195px;" type="button" class="btn btn-outline-danger" (click)="addMore()">Add More Products  <mat-icon>add_box</mat-icon></button>
+                            </div> 
+                            <div class="col-md-6">
+                                <button style="margin-right: 20%;width: 195px;" class="btn btn-outline-success right" type="button" (click)="AddProducts()"  routerLink="/navbar/productlist">Add<mat-icon >upload</mat-icon></button>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </mat-card>
+            
+        </mat-tab>
+      </mat-tab-group>
+</div>
+  
